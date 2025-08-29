@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Diya! 💖</title>
+  <link rel="icon" href="https://emojiapi.dev/api/v1/1f382/64.png" type="image/png"> <!-- Birthday Cake Icon -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Icons (Font Awesome) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --pink: #ffc7d9;
+      --lavender: #e4d3ff;
+      --cream: #fff8f8;
+      --text-dark: #3d3d3d;
+      --celebration-pink: #f7a8b8; /* A slightly brighter pink for celebrations */
+      --hero-overlay: rgba(0, 0, 0, 0.5); /* Darker overlay for text readability */
+    }
+    /* Universal reset and basic styling */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Nunito", sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      font-family: "Poppins", sans-serif;
+      color: var(--text-dark);
+    }
+    a { color: inherit; text-decoration: none; }
+    section { padding: 4rem 1.5rem; }
+    img { max-width: 100%; display: block; border-radius: 10px; }
+
+    /* General Accessibility: Better focus visibility */
+    *:focus-visible {
+      outline: 2px solid var(--lavender);
+      outline-offset: 3px;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: url('https://images.unsplash.com/photo-1526401483369-9161e625d88d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero::before { /* Overlay for text readability */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--hero-overlay);
+      z-index: 1;
+    }
+    .hero > * { /* Bring content above overlay */
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 8px rgba(0,0,0,.6); /* Stronger shadow for better contrast */
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center the entire h1 content */
+      gap: 15px; /* More space for the accent */
+    }
+    .hero h1 .birthday-accent {
+        font-size: 0.8em;
+        animation: pulse 1.5s infinite ease-in-out;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 1;}
+        50% { transform: scale(1.1); opacity: 0.9;}
+        100% { transform: scale(1); opacity: 1;}
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,.5);
+      max-width: 80%; /* Prevent too long lines on large screens */
+    }
+    .scroll-down {
+      position: absolute;
+      bottom: 2rem;
+      font-size: 2.5rem; /* Slightly larger */
+      animation: bounce 2s infinite;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,.5);
+      transition: transform 0.2s ease-out; /* Smooth hover */
+    }
+    .scroll-down:hover {
+        transform: translateY(-5px);
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-15px); } /* Bounces higher */
+      60% { transform: translateY(-8px); }
+    }
+
+    /* Our Story */
+    .our-story { background: var(--pink); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); /* Min size adjusted slightly */
+      gap: 2.5rem; /* Increased gap */
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .story-grid img { /* Add subtle shadow to story image */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .timeline {
+      list-style: none;
+    }
+    .timeline li {
+      margin-bottom: 1.5rem; /* Increased spacing */
+      position: relative;
+      padding-left: 1.8rem; /* Space for larger emoji */
+      font-size: 1.1rem; /* Slightly larger text */
+    }
+    .timeline li::before {
+      content: "🌸";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.2em; /* Larger emoji */
+    }
+
+    /* Gallery */
+    .gallery { background: var(--cream); }
+    .masonry {
+      column-count: 3;
+      column-gap: 1.2rem; /* Slightly larger gap */
+      max-width: 1100px;
+      margin: auto;
+    }
+    .masonry img {
+      width: 100%;
+      margin-bottom: 1.2rem; /* Slightly larger margin */
+      cursor: pointer;
+      transition: transform .3s ease-out, box-shadow .3s ease-out; /* Smooth transition for shadow too */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+    }
+    .masonry img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85); /* Slightly darker overlay */
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      flex-direction: column; /* To stack image and controls */
+      padding: 1rem;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5); /* Stronger shadow for enlarged image */
+    }
+    .lightbox.active { display: flex; }
+
+    .lightbox-controls {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        pointer-events: none; /* Allows clicks to pass through to image/background */
+    }
+    .lightbox-controls button {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+        pointer-events: auto; /* Re-enable clicks for buttons */
+        opacity: 0.8;
+    }
+    .lightbox-controls button:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    .lightbox-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+        z-index: 1000; /* Ensure close button is above controls */
+        pointer-events: auto;
+        opacity: 0.8;
+    }
+    .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    /* Birthday Wishes */
+    .birthday-wishes {
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--celebration-pink) 100%);
+      text-align: center;
+      padding: 5rem 1.5rem; /* More vertical padding */
+      color: var(--text-dark);
+    }
+    .birthday-wishes h2 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Larger heading */
+      margin-bottom: 2.5rem;
+      color: var(--text-dark); /* Ensure it's not white on light background */
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
+    }
+    .birthday-wishes .birthday-messages {
+        max-width: 800px;
+        margin: 0 auto 3rem auto; /* Space below messages */
+    }
+    .birthday-wishes p {
+      margin-bottom: 1.2rem;
+      font-size: clamp(1.1rem, 2.8vw, 1.4rem); /* Slightly larger text */
+      color: var(--text-dark);
+    }
+    /* Removed .birthday-wishes img.birthday-cake styles */
+    .birthday-wishes .signature {
+        margin-top: 3rem; /* More margin */
+        font-size: clamp(1.8rem, 4.5vw, 3rem); /* Larger signature */
+        font-family: "Poppins", sans-serif;
+        color: var(--text-dark); /* Darker for better visibility against gradient */
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Love Notes */
+    .love-notes {
+      background: var(--cream);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 1.5rem;
+    }
+    .love-notes h2 {
+        margin-bottom: 2rem;
+    }
+    .carousel {
+      max-width: 700px;
+      margin: auto;
+      font-size: clamp(1.3rem, 3vw, 1.8rem); /* Adjusted font size */
+      height: 150px; /* Taller for better centering */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+      background: rgba(255,255,255,0.7); /* Slightly highlight carousel area */
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      color: var(--text-dark);
+    }
+    .note {
+      opacity: 0;
+      position: absolute;
+      transition: opacity .8s ease-in-out, transform .8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother curve */
+      transform: translateY(10px) scale(0.9); /* Slightly start off-center */
+      padding: 0 1rem; /* Prevent text touching edges */
+    }
+    .note.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    /* Music Button */
+    #music-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2001;
+      background: var(--pink);
+      border: none;
+      border-radius: 50%;
+      width: 55px; /* Slightly larger */
+      height: 55px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15); /* Stronger shadow */
+      font-size: 1.7rem; /* Larger icon */
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    #music-btn:hover {
+      background: var(--lavender);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+    }
+    #music-btn.playing { /* Animation when music is playing */
+      animation: musicPulse 1.5s infinite ease-in-out;
+      background: var(--celebration-pink);
+    }
+    @keyframes musicPulse {
+        0% { transform: scale(1); box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+        50% { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0,0,0,0.25); }
+        100% { transform: scale(1); box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+    }
+
+    /* Custom Modal */
+    #custom-modal {
+      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,199,217,0.98); /* Less transparent */
+      z-index:3000; align-items:center; justify-content:center; flex-direction:column; text-align:center;
+    }
+    /* Modal content animation */
+    #custom-modal .modal-content {
+      background: linear-gradient(135deg, #fefefe, #fefefe); /* More subtle background */
+      padding:3rem; /* More padding */
+      border-radius:18px; /* Slightly more rounded */
+      box-shadow:0 8px 30px rgba(0,0,0,0.12); /* Stronger shadow */
+      max-width: 90vw;
+      border: 1px solid var(--pink); /* Subtle border */
+      /* Initial state for animation */
+      transform: translateY(20px) scale(0.95);
+      opacity: 0;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+    #custom-modal.active .modal-content { /* Final state when active */
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    #custom-modal h2 {
+        font-size: clamp(2rem, 5vw, 3.5rem); /* Larger modal heading */
+        margin-bottom:1.5rem;
+    }
+    #custom-modal p {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        margin-bottom: 1rem;
+    }
+    #custom-modal p:last-of-type {
+        margin-bottom: 2rem;
+    }
+    #close-modal {
+      margin-top:1.5rem; padding:.8rem 2rem; /* Larger button */
+      border:none; background:var(--pink); border-radius:10px; /* More rounded */
+      font-size:1.1rem; /* Larger text */
+      font-family: "Poppins", sans-serif;
+      cursor:pointer;
+      transition: background 0.2s, transform 0.2s;
+      color: var(--text-dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    #close-modal:hover {
+      background: var(--lavender);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position:fixed;pointer-events:none;top:0;left:0;width:100vw;height:100vh;z-index:2000;display:none;
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      font-size: 2.2rem; /* Slightly larger hearts */
+      animation: floatUp 3s linear forwards;
+      pointer-events: none;
+      z-index: 2000;
+      user-select: none;
+      text-shadow: 0 0 5px rgba(255,255,255,0.7); /* Adds a subtle glow */
+    }
+    @keyframes floatUp {
+      to {
+        transform: translateY(-120vh) scale(1.3) rotate(25deg); /* Float higher, larger, more rotation */
+        opacity: 0;
+      }
+    }
+
+    /* Footer */
+    footer {
+        background: var(--text-dark);
+        color: var(--cream);
+        text-align: center;
+        padding: 2.5rem 1.5rem; /* More padding */
+        font-size: 1rem; /* Slightly larger text */
+        font-family: "Poppins", sans-serif;
+        border-top: 5px solid var(--pink); /* A nice top border */
+    }
+    footer .social {
+        margin-top: 1rem; /* More space */
+    }
+    footer .social a {
+        color: var(--pink);
+        font-size: 1.8rem; /* Larger icons */
+        margin: 0 0.8rem; /* More space between icons */
+        transition: color 0.2s, transform 0.2s;
+    }
+    footer .social a:hover {
+        color: var(--lavender);
+        transform: translateY(-3px) scale(1.1); /* Lift and grow on hover */
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 767px) {
+      section { padding: 3rem 1rem; } /* Adjusted section padding for smaller screens */
+      .story-grid { gap: 1.5rem; }
+      .timeline li { font-size: 1rem; margin-bottom: 1rem; padding-left: 1.5rem; }
+      .timeline li::before { font-size: 1em; }
+
+      .masonry { column-count: 2; column-gap: 0.8rem; }
+      .masonry img { margin-bottom: 0.8rem; }
+      .lightbox-controls button { width: 40px; height: 40px; font-size: 1.8rem; }
+      .lightbox-close { width: 35px; height: 35px; font-size: 1.2rem; }
+
+      .birthday-wishes h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+      .birthday-wishes p { font-size: 1rem; margin-bottom: 0.8rem; }
+      /* No cake image styles to remove */
+      .birthday-wishes .signature { font-size: 1.2rem; margin-top: 2rem; }
+
+      .carousel { height: 120px; font-size: 1.2rem; }
+      #music-btn { width: 50px; height: 50px; font-size: 1.5rem; }
+      #custom-modal .modal-content { padding: 2rem; }
+      #custom-modal h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+      #custom-modal p { font-size: 1rem; margin-bottom: 0.8rem; }
+      #custom-modal p:last-of-type { margin-bottom: 1.5rem; }
+      #close-modal { padding: 0.6rem 1.5rem; font-size: 1rem; }
+      footer { padding: 2rem 1rem; font-size: 0.9rem; }
+      footer .social a { font-size: 1.5rem; margin: 0 0.6rem; }
+    }
+    @media(max-width: 480px) {
+      .hero h1 { font-size: 2.5rem; gap: 10px; }
+      .hero p { font-size: 1.1rem; }
+      .scroll-down { font-size: 2rem; }
+      .masonry { column-count: 1; } /* Single column for very small screens */
+      .birthday-wishes h2 { font-size: 1.8rem; }
+      /* No cake image styles to remove */
+      .carousel { height: 150px; font-size: 1.1rem; } /* Keep height reasonable for single column */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/02/14/audio_2047b282d3.mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <button id="music-btn" aria-label="Toggle background music">
+    <i class="fas fa-music"></i>
+  </button>
+
+  <section class="hero" id="hero">
+    <h1 class="diya">Happy Birthday, Diya! <span class="birthday-accent">🎂</span></h1>
+    <p>A little corner of the internet just for us, celebrating you.</p>
+    <a href="#birthday-wishes" class="scroll-down" aria-label="Scroll down to birthday wishes"><i class="fas fa-angle-down"></i></a>
+  </section>
+
+  <!-- Our Story -->
+  <section class="our-story" id="our-story">
+    <div class="story-grid">
+      <div data-aos="fade-right">
+        <img src="WhatsApp Image 2025-08-29 at 21.12.30_00dda903.jpg" alt="A happy couple together" loading="lazy">
+      </div>
+      <div data-aos="fade-left">
+        <h2>Our Story</h2>
+        <ul class="timeline">
+     
+          <li><strong>19 Feb 2024</strong> – I saw you and fell in love 💘</li>
+          <li><strong>10 Oct 2024</strong> – She accepted my friend request 👻</li>
+          <li><strong>7 Nov 2024</strong> – She finally accepted my proposal ❤️</li>
+          <li><strong>13 July 2025</strong> – Met her and spoke for the first time 💖 Magical moment ✨</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="gallery" id="gallery">
+    <h2 style="text-align:center;margin-bottom:2rem;" data-aos="fade-up">Memories Gallery</h2>
+    <div class="masonry">
+      <img src="WhatsApp Image 2025-08-29 at 21.12.30_5fe1fce4.jpg" alt="" data-aos="zoom-in" loading="lazy">
+      <img src="WhatsApp Image 2025-08-29 at 21.12.30_ce63453c.jpg" alt="" data-aos="zoom-in" loading="lazy">
+      <img src="WhatsApp Image 2025-08-29 at 21.12.30_72e79287.jpg" alt="" data-aos="zoom-in" loading="lazy">
+      <img src="WhatsApp Image 2025-08-29 at 21.25.28_7e6a0627.jpg" alt="" data-aos="zoom-in" loading="lazy">
+      <img src="WhatsApp Image 2025-08-29 at 21.25.28_35326eb9.jpg" alt="" data-aos="zoom-in" loading="lazy">
+      <img src="WhatsApp Image 2025-08-29 at 21.25.28_cca565f5.jpg" alt="" data-aos="zoom-in" loading="lazy">
+      
+    </div>
+  </section>
+
+  <!-- Birthday Wishes -->
+  <section class="birthday-wishes" id="birthday-wishes" data-aos="fade-up">
+    <h2>Happy Birthday, My Dearest Diya! 🎉</h2>
+    <div class="birthday-messages">
+        <p>On this special day, I want to celebrate the amazing person you are.</p>
+        <p>Every moment with you is a gift, and I'm endlessly grateful for your presence in my life. Your laughter is my favorite sound, and your smile brightens my every day.</p>
+        <p>May your birthday be filled with unforgettable joy, delicious treats, and all the love your heart can hold. You deserve all the happiness in the world, and so much more!</p>
+        <p>Here's to another year of creating beautiful memories together. I love you, today and always!</p>
+    </div>
+    <p class="signature">- Your Love 💖</p>
+  </section>
+
+  <!-- Love Notes -->
+  <section class="love-notes" id="love-notes">
+    <h2 data-aos="fade-up">Love Notes</h2>
+    <div class="carousel" id="carousel">
+      <div class="note active">“With you, every moment feels like home.”</div>
+      <div class="note">“Your smile is my favorite sunrise.”</div>
+      <div class="note">“In every lifetime, I’d find you and fall again.”</div>
+      <div class="note">“You are the song that my heart loves to replay.”</div>
+      <div class="note">“Together is my favorite place to be.”</div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" tabindex="-1">
+    <button class="lightbox-close" aria-label="Close image gallery"><i class="fas fa-times"></i></button>
+    <img src="#" alt="Enlarged memory">
+    <div class="lightbox-controls">
+        <button class="lightbox-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Confetti (on page load / modal close) -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Custom Message Modal -->
+  <div id="custom-modal">
+    <div class="modal-content">
+      <h2 style="margin-bottom:1rem;">Hi Diya! 💖</h2>
+      <p style="font-size:1.2rem;">Happy Birthday, my love! 🎂🎉<br>
+      You are the most precious part of my life.<br>
+      Thank you for being you, for your love, and for every beautiful moment.<br>
+      I hope this little page makes you smile!<br>
+      <span style="font-size:2rem;">🌸</span></p>
+      <button id="close-modal" aria-label="Close birthday message">Aww, thank you!</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    Made with 💖 by Samir, 2025
+    <div class="social">
+      <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Samir's Instagram profile"><i class="fab fa-instagram"></i></a>
+      <a href="https://open.spotify.com/playlist/yourplaylist" target="_blank" aria-label="Samir's Spotify playlist"><i class="fab fa-spotify"></i></a>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS after the page has fully loaded
+    window.onload = function() {
+        AOS.init({ duration: 800, once: true });
+    };
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightImg = lightbox.querySelector('img');
+    const galleryImages = Array.from(document.querySelectorAll('.masonry img'));
+    const lightboxPrevBtn = document.querySelector('.lightbox-prev');
+    const lightboxNextBtn = document.querySelector('.lightbox-next');
+    const lightboxCloseBtn = document.querySelector('.lightbox-close');
+    let currentImageIndex = 0;
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+      lightImg.src = galleryImages[currentImageIndex].src;
+      lightImg.alt = galleryImages[currentImageIndex].alt;
+      lightbox.classList.add('active');
+      lightbox.focus(); // Set focus to lightbox for keyboard navigation
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+    }
+
+    function showNextImage() {
+      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+      lightImg.src = galleryImages[currentImageIndex].src;
+      lightImg.alt = galleryImages[currentImageIndex].alt;
+    }
+
+    function showPrevImage() {
+      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+      lightImg.src = galleryImages[currentImageIndex].src;
+      lightImg.alt = galleryImages[currentImageIndex].alt;
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => openLightbox(index));
+    });
+
+    lightboxCloseBtn.addEventListener('click', closeLightbox);
+    lightboxPrevBtn.addEventListener('click', showPrevImage);
+    lightboxNextBtn.addEventListener('click', showNextImage);
+
+    // Close lightbox when clicking outside the image, but not on controls
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) { // Only close if directly clicking the overlay
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation for lightbox
+    lightbox.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === "Escape") {
+        closeLightbox();
+      } else if (e.key === "ArrowRight") {
+        showNextImage();
+      } else if (e.key === "ArrowLeft") {
+        showPrevImage();
+      }
+    });
+
+
+    // Confetti Effect
+    function showConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      canvas.style.display = 'block';
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      let confetti = [];
+      const colors = ['#f7a8b8', '#ffc7d9', '#e4d3ff', '#ffd9e6', '#ffe0e0']; // Pastel colors
+      for (let i = 0; i < 150; i++) { // More confetti particles
+        confetti.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height,
+          r: Math.random() * 8 + 3, // Varying sizes
+          d: Math.random() * 100 + 10,
+          color: colors[Math.floor(Math.random() * colors.length)] // Pick from pastel colors
+        });
+      }
+      let angle = 0;
+      function draw() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for (let i = 0; i < confetti.length; i++) {
+          let c = confetti[i];
+          ctx.beginPath();
+          ctx.arc(c.x, c.y, c.r, 0, Math.PI*2, false);
+          ctx.fillStyle = c.color;
+          ctx.fill();
+        }
+        update();
+      }
+      function update() {
+        angle += 0.01;
+        for (let i = 0; i < confetti.length; i++) {
+          let c = confetti[i];
+          c.y += (Math.cos(angle + c.d) + 1 + c.r/2) * 1.5; // Slightly faster fall
+          c.x += Math.sin(angle) * 3; // More horizontal sway
+          if (c.y > canvas.height) {
+            c.y = -10;
+            c.x = Math.random() * canvas.width;
+          }
+        }
+      }
+      let confettiInterval = setInterval(draw, 20);
+      setTimeout(() => {
+        clearInterval(confettiInterval);
+        canvas.style.display = 'none';
+      }, 5000); // Confetti falls for 5 seconds
+    }
+
+    // Love Notes Carousel
+    const notes = document.querySelectorAll('.note');
+    let currentNote = 0;
+    setInterval(() => {
+      notes[currentNote].classList.remove('active');
+      currentNote = (currentNote + 1) % notes.length;
+      notes[currentNote].classList.add('active');
+    }, 5000);
+
+    // Music controls
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    let musicPlaying = false;
+    musicBtn.addEventListener('click', () => {
+      if (musicPlaying) {
+        music.pause();
+        musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+        musicBtn.classList.remove('playing');
+      } else {
+        music.play();
+        musicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        musicBtn.classList.add('playing');
+      }
+      musicPlaying = !musicPlaying;
+    });
+    
+    // Show custom message on load (once)
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const customModal = document.getElementById('custom-modal');
+        customModal.style.display = 'flex';
+        customModal.classList.add('active'); // Add active class to trigger modal animation
+
+        // Focus trap for modal (basic implementation)
+        const focusableElements = customModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstFocusableElement = focusableElements[0];
+        const lastFocusableElement = focusableElements[focusableElements.length - 1];
+        
+        // Focus the close button when modal opens
+        if (firstFocusableElement) {
+            firstFocusableElement.focus();
+        }
+
+        customModal.addEventListener('keydown', function(e) {
+            let isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
+
+            if (!isTabPressed) {
+                return;
+            }
+
+            if (e.shiftKey) { // if shift key pressed for shift + tab
+                if (document.activeElement === firstFocusableElement) {
+                    lastFocusableElement.focus(); // add focus to the last focusable element
+                    e.preventDefault();
+                }
+            } else { // if tab key is pressed
+                if (document.activeElement === lastFocusableElement) {
+                    firstFocusableElement.focus(); // add focus to the first focusable element
+                    e.preventDefault();
+                }
+            }
+        });
+
+      }, 1200); // show after 1.2s
+    });
+
+    document.getElementById('close-modal').onclick = function() {
+      const customModal = document.getElementById('custom-modal');
+      customModal.classList.remove('active'); // Remove active class for animation
+      // Wait for animation to finish before setting display to none
+      customModal.addEventListener('transitionend', function handler() {
+          customModal.style.display = 'none';
+          customModal.removeEventListener('transitionend', handler);
+      });
+      
+      showConfetti(); // Trigger confetti when modal closes
+      // Try to play music after user interacts with the modal
+      if (!musicPlaying) {
+          music.play().then(() => {
+            musicPlaying = true;
+            musicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            musicBtn.classList.add('playing');
+          }).catch(error => {
+            console.log("Autoplay was prevented. User needs to click the music button.");
+            // If autoplay fails, ensure the button state is correct
+            musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+            musicBtn.classList.remove('playing');
+          });
+      }
+    };
+
+    // Floating hearts on click
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('#music-btn') || e.target.closest('#custom-modal') || e.target.closest('.lightbox')) return; // Exclude lightbox too
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = (e.clientX - 16) + 'px';
+      // Use pastel colors for hearts consistent with confetti
+      const heartColors = ['#f7a8b8', '#ffc7d9', '#e4d3ff', '#ffd9e6', '#ffe0e0'];
+      heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+      heart.textContent = '💖';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    });
+  </script>
+</body>
+</html>
